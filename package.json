@@ -1,0 +1,10 @@
+{
+  "name": "yellowiframeviz",
+  "version": "7.0.0",
+  "description": "yellowiframeviz",
+  "main": "index.js",
+  "kibana": {
+    "version": "7.0.0",
+    "templateVersion": "1.0.0"
+  }
+}
