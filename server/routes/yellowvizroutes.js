@@ -3,13 +3,13 @@
 
 export default function (server, options) 
 {
-	const https = 				require('http');
-	const http = 					require('http');
-	const useHttps = 				`${options.useHttps}` ;
+	const https = 			require('https');
+	const http = 			require('http');
+	const useHttps = 		`${options.useHttps}` ;
 	const strDisplayHost = 	`${options.displayHost}` ;
 	const strDisplayPath =  `${options.displayPath}` ;	
-	const displayPort = 		`${options.displayPort}` ;
-	const restArray = 			`${options.restArray}`;
+	const displayPort = 	`${options.displayPort}` ;
+	const restArray = 		`${options.restArray}`;
 	
 	function getURL(strHost, strPath, port, strMethod)
 	{
@@ -58,17 +58,22 @@ export default function (server, options)
 			method: 'GET',
 			async handler(req, reply) 
 			{
-			try
-			{
-				var strData = await getURL(strDisplayHost, strDisplayPath, displayPort, 'GET');
-				
-				return strData;
-			}
-			catch(err)
-			{
-				console.log(err.message);
-				return err.message;
-			}
+				try
+				{
+					console.log(req.query);
+					console.log(strDisplayHost);
+					console.log(strDisplayPath);
+					console.log(displayPort);
+
+					var strData = await getURL(strDisplayHost, strDisplayPath, displayPort, 'GET');
+					
+					return strData;
+				}
+				catch(err)
+				{
+					console.log(err.message);
+					return err.message;
+				}
 			}
 		}
 		

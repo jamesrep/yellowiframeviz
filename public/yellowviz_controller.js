@@ -13,38 +13,47 @@ class YellowvizComponent extends Component {
 
   componentDidMount() 
   {
-    //console.log("componentDidMount");
     this.props.renderComplete();
   }
 
   
   componentWillUnmount() 
   {
-    //console.log("componentWillUnmount");
   }  
 
   componentDidUpdate() 
   {
-    //console.log("componentDidUpdate");
     this.props.renderComplete();
   }
   
 
   render() 
   {
-    console.log("render");
     const strPage = this.props.website;
-    
-    console.log("page_" +strPage);
-    
-    if(strPage != null && strPage.indexOf("/api/yellowiframeviz/") != 0)
+
+    if(strPage == null) 
     {
-      return (<div>NOT ALLOWED! Only allows starting with /api/yellowiframeviz/</div>)
+      return (<div>page url cannot be null</div>);
+    }
+    
+    if(strPage.indexOf("/api/yellowiframeviz/") != 0)
+    {
+      return (<div>NOT ALLOWED:1 Only allows starting with /api/yellowiframeviz/</div>)
     }
   
-    if(strPage != null && strPage.indexOf("..") != 0)
+    if(strPage.indexOf("..") >= 0)
     {
-      return (<div>NOT ALLOWED! Only allows starting with /api/yellowiframeviz/</div>)
+      return (<div>NOT ALLOWED:2 Only allows starting with /api/yellowiframeviz/</div>)
+    }
+
+    if(strPage.toLowerCase().indexOf("%2f") >= 0)
+    {
+      return (<div>NOT ALLOWED:3  Only allows starting with /api/yellowiframeviz/</div>)
+    }
+
+    if(strPage.toLowerCase().indexOf("%u") >= 0)
+    {
+      return (<div>NOT ALLOWED:4 Only allows starting with /api/yellowiframeviz/</div>)
     }
 
     return (
